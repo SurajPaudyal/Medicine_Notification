@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/blood_group.dart';
-import 'package:flutter_application/splash_screen.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -129,34 +127,7 @@ class InitState extends State<ForgotPasswordScreen> {
                 ),
                 onTap: () {
                   // Write Tap Code Here.
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SplashScreen(),
-                      ));
-                },
-              )
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 50, bottom: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Wanna Go to Blood Group Section?   "),
-              GestureDetector(
-                child: Text(
-                  "CLICK HERE",
-                  style: TextStyle(color: Color(0xffF5591F)),
-                ),
-                onTap: () {
-                  // Write Tap Code Here.
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BloodGroup(),
-                      ));
+                  Navigator.pop(context);
                 },
               )
             ],

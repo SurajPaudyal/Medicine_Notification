@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
-import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter_application/blood_group.dart';
+import 'package:flutter_application/drug/medicine.dart';
+import 'package:flutter_application/pages/category_page.dart';
+import 'package:flutter_application/pages/chat_box.dart';
+import 'package:flutter_application/splash_screen.dart';
 
-import 'package:flutter_application/components/horizontal_listview.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'components/Products.dart';
 import 'package:flutter_application/pages/cart.dart';
 
@@ -75,7 +78,9 @@ class ShopHomePage extends StatelessWidget {
 //          Body
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => new ShopHomePage()));
+              },
               child: ListTile(
                 title: Text('Home Page'),
                 leading: Icon(
@@ -86,18 +91,22 @@ class ShopHomePage extends StatelessWidget {
             ),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => new CategoryPage()));
+              },
               child: ListTile(
-                title: Text('My Account'),
+                title: Text('Categories'),
                 leading: Icon(
-                  Icons.person,
-                  color: Colors.orangeAccent,
+                  Icons.dashboard,
+                  color: Colors.red,
                 ),
               ),
             ),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
+              },
               child: ListTile(
                 title: Text('My Orders'),
                 leading: Icon(
@@ -108,30 +117,60 @@ class ShopHomePage extends StatelessWidget {
             ),
 
             InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text('Remainder'),
+                leading: Icon(
+                  Icons.access_alarm,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+
+            InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => new ChatBox()));
               },
               child: ListTile(
-                title: Text('Shopping Cart'),
+                title: Text('Chat With Pharmacist'),
                 leading: Icon(
-                  Icons.shopping_cart,
+                  Icons.mark_chat_read_outlined,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+
+            Divider(),
+
+            InkWell(
+              onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => new medicine()));
+              },
+              child: ListTile(
+                title: Text('Search Medicine'),
+                leading: Icon(
+                  Icons.medical_services,
                   color: Colors.blue,
                 ),
               ),
             ),
 
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BloodGroup(),
+                    ));
+              },
               child: ListTile(
-                title: Text('Favourites'),
+                title: Text('Blood Group'),
                 leading: Icon(
-                  Icons.favorite,
+                  Icons.bloodtype,
                   color: Colors.red,
                 ),
               ),
             ),
-
-            Divider(),
 
             InkWell(
               onTap: () {},
@@ -145,22 +184,11 @@ class ShopHomePage extends StatelessWidget {
             ),
 
             InkWell(
-              onTap: () {},
-              child: ListTile(
-                title: Text('About'),
-                leading: Icon(
-                  Icons.help,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-
-            InkWell(
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
+                      builder: (context) => SplashScreen(),
                     ));
               },
               child: ListTile(
@@ -174,30 +202,20 @@ class ShopHomePage extends StatelessWidget {
           ],
         ),
       ),
-      body: new ListView(
+      body: new Column(
         children: <Widget>[
-          //Image Carousel Begins
+//==========Image Carousel Begins=================
           image_carousel,
           //Padding Widget
           new Padding(
             padding: const EdgeInsets.all(8.0),
-            child: new Text('Categories'),
-          ),
-
-          //  Horizontal List View Begins Here
-          HorizontalList(),
-
-          //Padding Widget
-          new Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: new Text('Recent Products'),
+            child: Container(
+                alignment: Alignment.centerLeft,
+                child: new Text('Recent Products')),
           ),
 
           //Grid View
-          Container(
-            height: 250.0,
-            child: Products(),
-          )
+          Flexible(child: Products())
         ],
       ),
     );
