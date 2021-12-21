@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/blood_group.dart';
-import 'package:flutter_application/drug/medicine.dart';
+import 'package:flutter_application/drug/medicine_indication/medicine_indication_home.dart';
 import 'package:flutter_application/pages/category_page.dart';
 import 'package:flutter_application/pages/chat_box.dart';
+import 'package:flutter_application/pages/emergency_numbers.dart';
 import 'package:flutter_application/splash_screen.dart';
 
 import 'package:carousel_pro/carousel_pro.dart';
-import 'components/Products.dart';
+import 'components/products_page.dart';
 import 'package:flutter_application/pages/cart.dart';
 
 class ShopHomePage extends StatelessWidget {
@@ -48,7 +49,8 @@ class ShopHomePage extends StatelessWidget {
               )),
           new IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>new Cart()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new Cart()));
               },
               icon: Icon(
                 Icons.shopping_cart,
@@ -79,7 +81,10 @@ class ShopHomePage extends StatelessWidget {
 
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new ShopHomePage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => new ShopHomePage()));
               },
               child: ListTile(
                 title: Text('Home Page'),
@@ -92,7 +97,10 @@ class ShopHomePage extends StatelessWidget {
 
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new CategoryPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => new CategoryPage()));
               },
               child: ListTile(
                 title: Text('Categories'),
@@ -105,7 +113,8 @@ class ShopHomePage extends StatelessWidget {
 
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new Cart()));
               },
               child: ListTile(
                 title: Text('My Orders'),
@@ -129,7 +138,8 @@ class ShopHomePage extends StatelessWidget {
 
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new ChatBox()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new ChatBox()));
               },
               child: ListTile(
                 title: Text('Chat With Pharmacist'),
@@ -141,10 +151,26 @@ class ShopHomePage extends StatelessWidget {
             ),
 
             Divider(),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => new EmergencyNumbers()));
+              },
+              child: ListTile(
+                title: Text('Emergency Numbers'),
+                leading: Icon(
+                  Icons.contact_phone_outlined,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
 
             InkWell(
               onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => new medicine()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new medicine()));
               },
               child: ListTile(
                 title: Text('Search Medicine'),
@@ -215,7 +241,7 @@ class ShopHomePage extends StatelessWidget {
           ),
 
           //Grid View
-          Flexible(child: Products())
+          Flexible(child: ProductsPage())
         ],
       ),
     );
