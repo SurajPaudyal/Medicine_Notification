@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/components/category_details.dart';
-
+import 'package:flutter_application/components/category/category_home.dart';
 
 class CategoryPage extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: new AppBar(
         elevation: 0.1,
         backgroundColor: Colors.deepOrange,
@@ -25,12 +23,7 @@ class _CategoryPageState extends State<CategoryPage> {
               )),
         ],
       ),
-        body: CategoryDetails(),
-      );
-
-
-
+      body: CategoryDetails(),
+    );
   }
 }
-
-
