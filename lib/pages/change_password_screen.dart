@@ -1,31 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application/authentication/authentication_service.dart';
-import 'package:flutter_application/signup_screen.dart';
-import 'forgot_password.dart';
-import 'shop_home_page.dart';
 
-class LoginScreen extends StatefulWidget {
+class ChangePasswordScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => StartState();
+  State<StatefulWidget> createState() => InitState();
 }
 
-class StartState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
+class InitState extends State<ChangePasswordScreen> {
   @override
-  Widget build(BuildContext context) {
-    return initWidget();
-  }
+  Widget build(BuildContext context) => initWidget();
 
-  initWidget() {
+  Widget initWidget() {
     return Scaffold(
         body: SingleChildScrollView(
             child: Column(
       children: [
         Container(
-          height: 300,
+          height: 220,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90)),
             color: new Color(0xffF5591F),
@@ -52,7 +42,7 @@ class StartState extends State<LoginScreen> {
                 margin: EdgeInsets.only(right: 20, top: 20),
                 alignment: Alignment.bottomRight,
                 child: Text(
-                  "Login",
+                  "Change Password",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               )
@@ -61,7 +51,7 @@ class StartState extends State<LoginScreen> {
         ),
         Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+          margin: EdgeInsets.only(left: 20, right: 20, top: 20),
           padding: EdgeInsets.only(left: 20, right: 20),
           height: 54,
           decoration: BoxDecoration(
@@ -75,14 +65,13 @@ class StartState extends State<LoginScreen> {
             ],
           ),
           child: TextField(
-            controller: _emailController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               icon: Icon(
-                Icons.email,
+                Icons.lock_outline_rounded,
                 color: Color(0xffF5591F),
               ),
-              hintText: "Enter Email",
+              hintText: "Your Old Password",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
@@ -95,69 +84,34 @@ class StartState extends State<LoginScreen> {
           height: 54,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: Color(0xffEEEEEE),
+            color: Colors.grey[200],
             boxShadow: [
               BoxShadow(
-                  offset: Offset(0, 20),
-                  blurRadius: 100,
+                  offset: Offset(0, 10),
+                  blurRadius: 50,
                   color: Color(0xffEEEEEE)),
             ],
           ),
           child: TextField(
-            controller: _passwordController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
-              focusColor: Color(0xffF5591F),
               icon: Icon(
-                Icons.vpn_key,
+                Icons.lock,
                 color: Color(0xffF5591F),
               ),
-              hintText: "Enter Password",
+              hintText: "Your New Password",
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
             ),
           ),
         ),
-        Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              child: Text(
-                "Forgot Password?",
-                style: TextStyle(color: Color(0xfff5591f)),
-              ),
-              onTap: () {
-                // Write Tap Code Here.
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ForgotPasswordScreen(),
-                    ));
-              },
-            )),
         GestureDetector(
           onTap: () {
-            AuthenticationService(FirebaseAuth.instance)
-                .signIn(
-                    email: _emailController.text,
-                    password: _passwordController.text)
-                .then((value) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(value)));
-              if (value == "Signed in") {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShopHomePage(),
-                    ));
-              }
-            });
-
             // Write Click Listener Code Here.
           },
           child: Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 20, right: 20, top: 10),
+            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
             padding: EdgeInsets.only(left: 20, right: 20),
             height: 54,
             decoration: BoxDecoration(
@@ -175,36 +129,19 @@ class StartState extends State<LoginScreen> {
               ],
             ),
             child: Text(
-              "LOGIN",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              "Change",
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Don't Have Any Account?  "),
-              GestureDetector(
-                child: Text(
-                  "Register Now",
-                  style: TextStyle(color: Color(0xffF5591F)),
-                ),
-                onTap: () {
-                  // Write Tap Code Here.
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignUpScreen(),
-                      ));
-                },
-              )
-            ],
+        const SizedBox(height: 8),
+        Text(
+          'Never Share Your Password With Anyone',
+          style: TextStyle(
+            fontSize: 20,
+            fontStyle: FontStyle.italic,
           ),
-        )
+        ),
       ],
     )));
   }

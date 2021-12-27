@@ -1,80 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application/utilities/utilities.dart';
+import 'package:get/get.dart';
 
 class AllMedicineList extends StatefulWidget {
-  const AllMedicineList({key, medicine_detail_picture, medicine_detail_name}) : super(key: key);
+  AllMedicineList({
+    key,
+    medicine_detail_picture,
+    medicine_detail_name,
+  }) : super(key: key);
+
+  String medicine_detail_picture;
+  String medicine_detail_name;
 
   @override
   _AllMedicineListState createState() => _AllMedicineListState();
 }
 
 class _AllMedicineListState extends State<AllMedicineList> {
-  var AllMedicineList_on_the_cart = [
-    {
-      "name": "Sinex",
-      "picture": "assets/medicineimages/Sinex.jpg",
-      "price": 30,
-      "Company": "Time Pharmaceuticals",
-      "quantity": 1,
-    },
-    {
-      "name": "Sancho",
-      "picture": "assets/medicineimages/Sancho.jpg",
-      "price": 40,
-      "Company": "Nepal Arurvedic ausadhalaya",
-      "quantity": 1,
-    },
-    {
-      "name": "Nims",
-      "picture": "assets/medicineimages/Nims.jpg",
-      "price": 42,
-      "Company": "Asian Pharmaceuticals",
-      "quantity": 1,
-    },
-    {
-      "name": "De-Cold",
-      "picture": "assets/medicineimages/Decold.jpg",
-      "price": 30,
-      "Company": "Lomus Pharmaceuticals",
-      "quantity": 1,
-    },
-    {
-      "name": "TusQDx",
-      "picture": "assets/medicineimages/TusQD.png",
-      "price": 141,
-      "Company": "Blue Cross Laboratories ",
-      "quantity": 1,
-    },
-    {
-      "name": "Rhinex",
-      "picture": "assets/medicineimages/Rhinex.jpg",
-      "price": 30,
-      "Company": "Simca Pharmaceuticals",
-      "quantity": 1,
-    },
-  ];
+  var searchedMedicineList = [].obs;
+
+  // searchProduct(String name) {
+  //   searchedMedicineList.value =
+  //       allMedicineList_on_the_cart.where((element) => element["name"].contains()).toList();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
-        itemCount: 7,
-        itemBuilder: (context, index) {
-          return Single_list_AllMedicineList(
-            list_med_name: AllMedicineList_on_the_cart[index]["name"],
-            list_med_picture: AllMedicineList_on_the_cart[index]["picture"],
-            list_med_company: AllMedicineList_on_the_cart[index]["Company"],
-            list_med_price: AllMedicineList_on_the_cart[index]["price"],
-            list_med_qty: AllMedicineList_on_the_cart[index]["qty"],
-          );
-        });
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("All Medicine List"),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                prefixIcon: Icon(Icons.search),
+                label: Text("Search Medicine"),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: allMedicineList_on_the_cart.length,
+                itemBuilder: (context, index) {
+                  return Single_list_AllMedicineList(
+                    list_med_name: allMedicineList_on_the_cart[index]["name"],
+                    list_med_picture: allMedicineList_on_the_cart[index]
+                        ["picture"],
+                    list_med_company: allMedicineList_on_the_cart[index]
+                        ["Company"],
+                    list_med_price: allMedicineList_on_the_cart[index]["price"],
+                    list_med_qty: allMedicineList_on_the_cart[index]
+                        ["quantity"],
+                  );
+                }),
+          ),
+        ],
+      ),
+    );
   }
 }
 
 class Single_list_AllMedicineList extends StatelessWidget {
-  final list_med_name;
-  final list_med_picture;
-  final list_med_price;
-  final list_med_company;
-  final list_med_qty;
+  final String list_med_name;
+  final String list_med_picture;
+  final int list_med_price;
+  final String list_med_company;
+  final int list_med_qty;
 
   Single_list_AllMedicineList({
     this.list_med_name,
@@ -89,7 +86,11 @@ class Single_list_AllMedicineList extends StatelessWidget {
     return Card(
       child: ListTile(
 //    ==============LEADING SECTION==============
-        leading: new Image.asset(list_med_picture, width: 100.0, height: 150.0,),
+        leading: new Image.asset(
+          list_med_picture,
+          width: 100.0,
+          height: 150.0,
+        ),
 //    =============TITLE SECTION========
         title: new Text(list_med_name),
 //        =====SUBTITLE SECTION=============
@@ -99,29 +100,34 @@ class Single_list_AllMedicineList extends StatelessWidget {
             new Row(
 //          THIS SECTION IS FOR THE COMPANY OF THE PRODUCT
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: new Text("Company:"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: new Text(
+                Text("Company: "),
+                Expanded(
+                  child: Text(
                     list_med_company,
                     style: TextStyle(color: Colors.red),
+                    overflow: TextOverflow.visible,
                   ),
                 ),
 //                THIS SECTION IS FOR PRODUCT PRICE
-
               ],
             ),
           ],
         ),
-        trailing: new Column(
-          children: <Widget>[
-            new IconButton(icon: Icon(Icons.arrow_drop_up), onPressed: (){}, ),
-            new Text("$list_med_qty"),
-            new IconButton(icon: Icon(Icons.arrow_drop_down), onPressed: (){}, )
-          ],
+        trailing: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              InkWell(
+                child: Icon(Icons.arrow_drop_up),
+                onTap: () {},
+              ),
+              Text("$list_med_qty"),
+              InkWell(
+                child: Icon(Icons.arrow_drop_down),
+                onTap: () {},
+              )
+            ],
+          ),
         ),
       ),
     );
