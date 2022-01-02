@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/shop_home_page.dart';
 
 class ProductDetails extends StatefulWidget {
-  final product_detail_name;
-  final product_detail_picture;
-  final product_detail_old_price;
-  final product_detail_new_price;
+  final String product_detail_name;
+  final String product_detail_picture;
+  final String product_detail_old_price;
+  final String product_detail_new_price;
 
   ProductDetails({
     this.product_detail_name,
@@ -227,15 +227,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: new Text("Best Condition")),
             ],
           ),
-        Divider(),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: new Text("Similar Products"),
-        ),
+          Divider(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: new Text("Similar Products"),
+          ),
 //          SIMILAR PRODUCTS SECTION
           Container(
             height: 340.0,
-              child: Similar_products(),
+            child: Similar_products(),
           )
         ],
       ),

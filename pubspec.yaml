@@ -18,6 +18,9 @@ environment:
 
 dependencies:
   carousel_pro: ^1.0.0
+  firebase_auth: ^3.3.4
+  firebase_core: ^1.10.6
+  firebase_database: ^9.0.4
   flutter_typeahead: ^3.2.4
   flutter:
     sdk: flutter
@@ -25,6 +28,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  flutter_icons: ^1.1.0
+  get: ^4.6.1
 
 dev_dependencies:
   flutter_launcher_icons: "^0.9.2"
@@ -71,6 +76,18 @@ flutter:
     - images/cats/cholesterol.jpg
     - images/cats/generalmedicine.png
     - images/cats/suppliment.jpg
+    - images/cats/painkiller.jpg
+    - images/cats/asthama.jpg
+    - images/cats/cough.jpg
+    - images/cats/constipation.jpg
+    - images/cats/wound.jpg
+    - images/cats/eardrop.jpg
+    - images/cats/enzymedigestion.jpg
+    - images/cats/worm.jpg
+    - images/cats/thyroid.jpg
+    - images/cats/calcium.jpg
+    - images/cats/nasal.jpg
+
     - images/products/medicine1.jpg
     - images/products/medicine2.jpg
     - images/products/medicine3.jpg
