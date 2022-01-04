@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/authentication/authentication_service.dart';
 import 'package:flutter_application/signup_screen.dart';
 import 'forgot_password.dart';
 import 'shop_home_page.dart';
@@ -9,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class StartState extends State<LoginScreen> {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return initWidget();
@@ -70,6 +75,7 @@ class StartState extends State<LoginScreen> {
             ],
           ),
           child: TextField(
+            controller: _emailController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               icon: Icon(
@@ -98,6 +104,7 @@ class StartState extends State<LoginScreen> {
             ],
           ),
           child: TextField(
+            controller: _passwordController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               focusColor: Color(0xffF5591F),
@@ -130,11 +137,22 @@ class StartState extends State<LoginScreen> {
             )),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ShopHomePage(),
-                ));
+            AuthenticationService(FirebaseAuth.instance)
+                .signIn(
+                    email: _emailController.text,
+                    password: _passwordController.text)
+                .then((value) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(value)));
+              if (value == "Signed in") {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShopHomePage(),
+                    ));
+              }
+            });
+
             // Write Click Listener Code Here.
           },
           child: Container(
