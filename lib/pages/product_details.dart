@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/shop_home_page.dart';
 
 class ProductDetails extends StatefulWidget {
-  final product_detail_name;
-  final product_detail_picture;
-  final product_detail_old_price;
-  final product_detail_new_price;
+  final String product_detail_name;
+  final String product_detail_picture;
+  final String product_detail_old_price;
+  final String product_detail_new_price;
 
   ProductDetails({
     this.product_detail_name,
@@ -29,7 +29,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => new ShopHomePage()));
             },
-            child: Text('Online Pharmacy')),
+            child: Text('Sushant Pharmacy')),
         actions: <Widget>[
           new IconButton(
               onPressed: () {},
@@ -140,7 +140,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   elevation: 0.2,
                   child: Row(
                     children: <Widget>[
-                      Expanded(child: new Text("QTY")),
+                      Expanded(child: new Text("Qty")),
                       Expanded(child: new Icon(Icons.arrow_drop_down)),
                     ],
                   ),
@@ -167,31 +167,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                     Icons.add_shopping_cart,
                     color: Colors.red,
                   )),
-
-              new IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: Colors.red,
-                  )),
             ],
           ),
           Divider(),
-
-          new ListTile(
-            title: new Text("Product Details"),
-            subtitle: new Text(
-                "Medicine is the science that deals with diseases (illnesses) in humans and animals, the best ways to prevent diseases, and the best ways to return to a healthy condition              People who practice medicine are most often called medical doctors or physicians. Often doctors work closely with nurses and many other types of health care professionals.Many doctors specialize in one kind of medical work. For example, pediatrics is the medical specialty about the health of children."),
-          ),
-          Divider(),
-
           new Row(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                padding: EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text(
                   "Product Name",
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
               Padding(
@@ -203,39 +188,40 @@ class _ProductDetailsState extends State<ProductDetails> {
           new Row(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
+                padding: EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
                 child: new Text(
                   "Product Brand",
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
               ),
               Padding(padding: EdgeInsets.all(5.0), child: new Text("Brand X")),
             ],
           ),
+          Divider(),
 
-          new Row(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(12.0, 5.0, 5.0, 5.0),
-                child: new Text(
-                  "Product Condition",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: new Text("Best Condition")),
-            ],
+          new ListTile(
+            title: new Text(
+              "Product Details",
+              style: TextStyle(color: Colors.deepOrange, fontSize: 20.0),
+            ),
+            subtitle: new Text(
+                "Medicine is the science that deals with diseases (illnesses) in humans and animals, the best ways to prevent diseases, and the best ways to return to a healthy condition              People who practice medicine are most often called medical doctors or physicians. Often doctors work closely with nurses and many other types of health care professionals.Many doctors specialize in one kind of medical work. For example, pediatrics is the medical specialty about the health of children."),
           ),
-        Divider(),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: new Text("Similar Products"),
-        ),
+          Divider(
+            thickness: 1.0,
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: new Text(
+              "Similar Products",
+            ),
+          ),
 //          SIMILAR PRODUCTS SECTION
           Container(
-            height: 340.0,
-              child: Similar_products(),
+            height: 240.0,
+            child: Similar_products(),
           )
         ],
       ),
@@ -278,7 +264,7 @@ class _Similar_productsState extends State<Similar_products> {
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: EdgeInsets.all(4.0),
             child: Similar_Single_prod(
               prod_name: product_list[index]['name'],
               prod_picture: product_list[index]['picture'],

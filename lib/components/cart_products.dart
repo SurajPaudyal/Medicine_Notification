@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Cart_products extends StatefulWidget {
+class Ordered_Cart_products extends StatefulWidget {
   @override
-  _Cart_productsState createState() => _Cart_productsState();
+  _Ordered_Cart_productsState createState() => _Ordered_Cart_productsState();
 }
 
-class _Cart_productsState extends State<Cart_products> {
+class _Ordered_Cart_productsState extends State<Ordered_Cart_products> {
   var Products_on_the_cart = [
     {
       "name": "Medicine One",
@@ -32,7 +32,7 @@ class _Cart_productsState extends State<Cart_products> {
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
+    return ListView.builder(
         itemCount: 3,
         itemBuilder: (context, index) {
           return Single_cart_products(
@@ -66,44 +66,40 @@ class Single_cart_products extends StatelessWidget {
     return Card(
       child: ListTile(
 //    ==============LEADING SECTION==============
-        leading: new Image.asset(cart_prod_picture, width: 60.0, height: 60.0,),
+        leading: Image.asset(
+          cart_prod_picture,
+          width: 60.0,
+          height: 60.0,
+        ),
 //    =============TITLE SECTION========
-        title: new Text(cart_prod_name),
+        title: Text(cart_prod_name),
 //        =====SUBTITLE SECTION=============
-        subtitle: new Column(
+        subtitle: Column(
           children: <Widget>[
 //          ROW INSIDE THE COLUMN
-            new Row(
+            Row(
 //          THIS SECTION IS FOR THE SIZE OF THE PRODUCT
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: new Text("Size:"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: new Text(
-                    cart_prod_size,
+                  child: Text(
+                    "Quantity: \$${cart_prod_qty}",
                     style: TextStyle(color: Colors.red),
                   ),
                 ),
 //                THIS SECTION IS FOR PRODUCT PRICE
-                new Container(
+                Container(
                   alignment: Alignment.topLeft,
-                  child: new Text(
-                    "    Price: \$${cart_prod_price}",
-                    style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold, color: Colors.red),
+                  child: Text(
+                    "   Total Price: \$${cart_prod_price}",
+                    style: TextStyle(
+                        fontSize: 12.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
                   ),
                 )
               ],
             ),
-          ],
-        ),
-        trailing: new Column(
-          children: <Widget>[
-            new IconButton(icon: Icon(Icons.arrow_drop_up), onPressed: (){}, ),
-            new Text("$cart_prod_qty"),
-            new IconButton(icon: Icon(Icons.arrow_drop_down), onPressed: (){}, )
           ],
         ),
       ),

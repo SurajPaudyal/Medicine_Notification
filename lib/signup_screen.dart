@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import 'login_screen.dart';
+import 'package:flutter_application/authentication/authentication_service.dart';
+import 'package:flutter_application/models/users.dart';
+import 'package:flutter_application/otp_screen.dart';
+import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -8,6 +11,13 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class InitState extends State<SignUpScreen> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  var _obscureText = true.obs;
+
   @override
   Widget build(BuildContext context) => initWidget();
 
@@ -33,7 +43,22 @@ class InitState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 50),
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.fromLTRB(5.0, 30.0, 0.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // Write Tap Code Here.
+                    Navigator.pop((context));
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 32,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
                 child: Image.asset(
                   "images/app_logo.png",
                   height: 90,
@@ -41,7 +66,10 @@ class InitState extends State<SignUpScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(right: 20, top: 20),
+                margin: EdgeInsets.only(
+                  right: 20,
+                  bottom: 10.0,
+                ),
                 alignment: Alignment.bottomRight,
                 child: Text(
                   "Register",
@@ -67,6 +95,7 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: _nameController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               icon: Icon(
@@ -95,6 +124,7 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: _emailController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               icon: Icon(
@@ -123,6 +153,7 @@ class InitState extends State<SignUpScreen> {
             ],
           ),
           child: TextField(
+            controller: _phoneController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               focusColor: Color(0xffF5591F),
@@ -151,27 +182,55 @@ class InitState extends State<SignUpScreen> {
                   color: Color(0xffEEEEEE)),
             ],
           ),
-          child: TextField(
-            cursorColor: Color(0xffF5591F),
-            decoration: InputDecoration(
-              focusColor: Color(0xffF5591F),
-              icon: Icon(
-                Icons.vpn_key,
-                color: Color(0xffF5591F),
+          child: Obx(
+            () => TextField(
+              controller: _passwordController,
+              cursorColor: Color(0xffF5591F),
+              obscureText: _obscureText.value,
+              decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      _obscureText.value = !_obscureText.value;
+                    },
+                    icon: _obscureText.value
+                        ? Icon(Icons.visibility)
+                        : Icon(Icons.visibility_off)),
+                focusColor: Color(0xffF5591F),
+                icon: Icon(
+                  Icons.vpn_key,
+                  color: Color(0xffF5591F),
+                ),
+                hintText: "Enter Password",
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
               ),
-              hintText: "Enter Password",
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
             ),
           ),
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginScreen(),
-                ));
+            AuthenticationService(FirebaseAuth.instance)
+                .signUp(
+                    email: _emailController.text,
+                    password: _passwordController.text)
+                .then((value) {
+              Users userData = Users(
+                id: value,
+                name: _nameController.text,
+                email: _emailController.text,
+                phone: _phoneController.text,
+              );
+              createOrUpdateUserData(userData).then((value) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(value)));
+              });
+            });
+
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => LoginScreen(),
+            //     ));
             // Write Click Listener Code Here.
           },
           child: Container(
@@ -211,8 +270,12 @@ class InitState extends State<SignUpScreen> {
                   style: TextStyle(color: Color(0xffF5591F)),
                 ),
                 onTap: () {
-                  // Write Tap Code Here.
-                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OtpScreen(),
+                      ));
+                  // Write Click Listener Code Here.
                 },
               )
             ],

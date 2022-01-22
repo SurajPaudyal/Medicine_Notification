@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/shop_home_page.dart';
 import 'login_screen.dart';
 
 void main() {
@@ -20,11 +21,15 @@ class StartState extends State<SplashScreen> {
   }
 
   startTime() async {
-    var duration = Duration(seconds: 4);
+    var duration = Duration(seconds: 1);
     return new Timer(duration, route);
   }
 
   route() {
+    // Navigator.pushReplacement(
+    //     context, MaterialPageRoute(builder: (context) => ShopHomePage()));
+
+    //TODO: uncomment this
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }

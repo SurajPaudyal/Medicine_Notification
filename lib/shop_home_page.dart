@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application/blood_group.dart';
-import 'package:flutter_application/drug/medicine.dart';
-import 'package:flutter_application/pages/category_page.dart';
-import 'package:flutter_application/pages/chat_box.dart';
-import 'package:flutter_application/splash_screen.dart';
-
+import 'package:flutter_application/admin/admin_home.dart';
+import 'package:flutter_application/components/all_supplement_lists.dart';
+import 'package:flutter_application/controller/users_controller.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'components/Products.dart';
-import 'package:flutter_application/pages/cart.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_application/view/screens/pages/drawer.dart';
+import 'package:flutter_application/view/screens/pages/wishList_cart.dart';
+import 'package:get/get.dart';
+import 'components/supplements_page.dart';
 
+// ignore: must_be_immutable
 class ShopHomePage extends StatelessWidget {
-  const ShopHomePage({key}) : super(key: key);
+  ShopHomePage({key}) : super(key: key);
+
+  var controller = Get.put(UsersController());
 
   @override
   Widget build(BuildContext context) {
-    Widget image_carousel = new Container(
+    Widget image_carousel = Container(
       height: 200.0,
-      child: new Carousel(
+      child: Carousel(
         boxFit: BoxFit.cover,
         images: [
-          AssetImage('images/1.jpg'),
-          AssetImage('images/2.jpg'),
-          AssetImage('images/3.jpg'),
-          AssetImage('images/4.jpg'),
-          AssetImage('images/5.jpg'),
-          AssetImage('images/6.jpg'),
+          //  OnTap(){
+          //   Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => AllSupplementList()));
+          // },
+          AssetImage('assets/supplementimages/1.jpg'),
+          AssetImage('assets/supplementimages/2.jpg'),
+          AssetImage('assets/supplementimages/3.jpg'),
+          AssetImage('assets/supplementimages/4.jpg'),
+          AssetImage('assets/supplementimages/5.jpg'),
         ],
         autoplay: true,
 //      animationCurve: Curve.fastOutSlowIn,
@@ -36,186 +44,68 @@ class ShopHomePage extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: new AppBar(
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blue,
+        onPressed: () {
+          Get.to(() => AdminHomePage());
+        },
+        label: Row(
+          children: [
+            Icon(Icons.admin_panel_settings),
+            Text(
+              "Admin Panel",
+              style: TextStyle(fontSize: 15),
+            )
+          ],
+        ),
+      ),
+      appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text('Online Pharmacy'),
+        title: Text('Sushant Pharmacy'),
         actions: <Widget>[
-          new IconButton(
+          IconButton(
               onPressed: () {},
               icon: Icon(
                 Icons.search,
                 color: Colors.white,
               )),
-          new IconButton(
+          IconButton(
+              padding: EdgeInsets.only(right: 10.0),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>new Cart()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => WishListCartPage()));
               },
               icon: Icon(
-                Icons.shopping_cart,
+                Icons.add_shopping_cart,
                 color: Colors.white,
               )),
         ],
       ),
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-//         Header
-            new UserAccountsDrawerHeader(
-              accountName: Text('Name Admin '),
-              accountEmail: Text('NameAdmin@gmail.com'),
-              currentAccountPicture: GestureDetector(
-                child: new CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              decoration: new BoxDecoration(color: Colors.deepOrange),
-            ),
-
-//          Body
-
-            InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new ShopHomePage()));
-              },
-              child: ListTile(
-                title: Text('Home Page'),
-                leading: Icon(
-                  Icons.home,
-                  color: Colors.indigo,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new CategoryPage()));
-              },
-              child: ListTile(
-                title: Text('Categories'),
-                leading: Icon(
-                  Icons.dashboard,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
-              },
-              child: ListTile(
-                title: Text('My Orders'),
-                leading: Icon(
-                  Icons.shopping_basket,
-                  color: Colors.green,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {},
-              child: ListTile(
-                title: Text('Remainder'),
-                leading: Icon(
-                  Icons.access_alarm,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => new ChatBox()));
-              },
-              child: ListTile(
-                title: Text('Chat With Pharmacist'),
-                leading: Icon(
-                  Icons.mark_chat_read_outlined,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-
-            Divider(),
-
-            InkWell(
-              onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => new medicine()));
-              },
-              child: ListTile(
-                title: Text('Search Medicine'),
-                leading: Icon(
-                  Icons.medical_services,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BloodGroup(),
-                    ));
-              },
-              child: ListTile(
-                title: Text('Blood Group'),
-                leading: Icon(
-                  Icons.bloodtype,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {},
-              child: ListTile(
-                title: Text('Settings'),
-                leading: Icon(
-                  Icons.settings,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SplashScreen(),
-                    ));
-              },
-              child: ListTile(
-                title: Text('Log Out'),
-                leading: Icon(
-                  Icons.logout,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: new Column(
+      drawer: Drawer(child: DrawerPage()),
+      body: Column(
         children: <Widget>[
 //==========Image Carousel Begins=================
           image_carousel,
           //Padding Widget
-          new Padding(
-            padding: const EdgeInsets.all(8.0),
+          Padding(
+            padding: EdgeInsets.all(3.0),
             child: Container(
-                alignment: Alignment.centerLeft,
-                child: new Text('Recent Products')),
+                alignment: Alignment.center,
+                child: Text(
+                  'Food Supplement Products',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.deepOrange,
+                      fontWeight: FontWeight.bold),
+                )),
           ),
 
           //Grid View
-          Flexible(child: Products())
+          Flexible(
+            child: SupplementsPage(),
+          )
         ],
       ),
     );
