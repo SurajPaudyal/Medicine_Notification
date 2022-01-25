@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "914249042359",
+    "project_id": "epharmacy-c81e3",
+    "storage_bucket": "epharmacy-c81e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:914249042359:android:ea57a78d6abd9116b48032",
+        "android_client_info": {
+          "package_name": "com.example.medicine_notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "914249042359-ejcgfijin5npmssmgioib8hrohme9qb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicine_notification",
+            "certificate_hash": "44f20d9ac6847002a611034abecb7b4d7921afd7"
+          }
+        },
+        {
+          "client_id": "914249042359-mj1b5khepd00r0g3553pc6hu8oq5lkc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAafU6kp9QExefQ_Q3sDV8V0BAiriZZqM8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "914249042359-mj1b5khepd00r0g3553pc6hu8oq5lkc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

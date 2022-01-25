@@ -6,6 +6,8 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class InitState extends State<ForgotPasswordScreen> {
+  TextEditingController _emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) => initWidget();
 
@@ -65,6 +67,7 @@ class InitState extends State<ForgotPasswordScreen> {
             ],
           ),
           child: TextField(
+            controller: _emailController,
             cursorColor: Color(0xffF5591F),
             decoration: InputDecoration(
               icon: Icon(

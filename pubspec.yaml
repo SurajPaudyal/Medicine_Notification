@@ -18,16 +18,38 @@ environment:
 
 dependencies:
   carousel_pro: ^1.0.0
+  firebase_auth: ^3.3.4
+  firebase_core: ^1.10.6
+  firebase_database: ^9.0.4
+  cloud_firestore: ^3.1.5
   flutter_typeahead: ^3.2.4
+  image_picker: ^0.8.4+4
+  otp_text_field: ^1.1.1
+  otp_screen: ^0.0.3
+  connectivity: ^3.0.6
+  carousel_slider: ^4.0.0
+  flutter_launcher_icons: ^0.9.2
+  geolocator: ^8.0.3
+  google_maps_flutter: ^2.1.1
+  intl: ^0.17.0
+  flutter_local_notifications: ^9.2.0
+  flutter_app_badger: ^1.3.0
+  url_launcher: ^6.0.18
+  google_fonts: ^2.2.0
+  timezone: ^0.8.0
+  firebase_messaging: ^11.2.5
+  provider:
+
   flutter:
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  flutter_icons: ^1.1.0
+  get: ^4.6.1
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.9.2"
   flutter_test:
     sdk: flutter
 
@@ -53,24 +75,60 @@ flutter:
     #  - images/a_dot_burr.jpeg
     #  - images/a_dot_ham.jpeg
     - images/app_logo.png
-    - images/1.jpg
-    - images/2.jpg
-    - images/3.jpg
-    - images/4.jpg
-    - images/5.jpg
-    - images/6.jpg
-    - images/cats/cardio.jpg
-    - images/cats/diabetic.jpg
-    - images/cats/gastric.jpeg
-    - images/cats/vitamins.jpg
-    - images/cats/antibiotics.jpg
-    - images/cats/opthalmic.jpg
-    - images/cats/allergy.jpg
-    - images/cats/antifungal.jpg
-    - images/cats/babyproducts.jpg
-    - images/cats/cholesterol.jpg
-    - images/cats/generalmedicine.png
-    - images/cats/suppliment.jpg
+    - assets/supplementimages/cerelac.jpeg
+    - assets/supplementimages/farex.jpeg
+    - assets/supplementimages/fishoil.jpg
+    - assets/supplementimages/lactogen.jpg
+    - assets/supplementimages/sarbottam.jpg
+    - assets/supplementimages/supravit.jpg
+    - assets/supplementimages/ceregrow.jpg
+    - assets/supplementimages/cerelac1.jpg
+    - assets/supplementimages/dochem.jpg
+    - assets/supplementimages/farex1.png
+    - assets/supplementimages/lactodex.jpg
+    - assets/supplementimages/mamypoko.jpg
+    - assets/supplementimages/similac1.png
+    - assets/supplementimages/1.jpg
+    - assets/supplementimages/2.jpg
+    - assets/supplementimages/3.jpg
+    - assets/supplementimages/4.jpg
+    - assets/supplementimages/5.jpg
+    - images/cats/Anti-Hypertensives.jpg
+    - images/cats/Anti-Diabetics.jpg
+    - images/cats/Peptic-Ulcer-and-Gerd.jpeg
+    - images/cats/Minerals-and-Vitamins.jpg
+    - images/cats/Antibiotics.jpg
+    - images/cats/Opthalmic.jpg
+    - images/cats/Anti-Fungal.png
+    - images/cats/General-Medicine.png
+    - images/cats/Anti-Allergies.jpg
+    - images/cats/Lipid-Lowering-Agents.jpg
+    - images/cats/Analgesics.png
+    - images/cats/Anti-Asthmatic.jpg
+    - images/cats/Cough-and-Cold.jpg
+    - images/cats/Laxatives.jpg
+    - images/cats/Ear-Drops.jpg
+    - images/cats/Digestive-Enzymes.jpg
+    - images/cats/Thyrodism.jpg
+    - images/cats/Nasal.jpg
+    - images/cats/Anti-Cold.jpg
+    - images/cats/Diuretics.png
+    - images/cats/Pre-and-Probiotic.png
+    - images/cats/Anti-Platelet.jpg
+    - images/cats/Urology-Medicine.png
+    - images/cats/Anti-Coagulant.jpg
+    - images/cats/Neuropathic-Pain.jpeg
+    - images/cats/Anti-Spasmodic.jpeg
+    - images/cats/Anti-Fibrinolytic.png
+    - images/cats/Anti-Depressants.jpg
+    - images/cats/Anti-Emetic.png
+    - images/cats/Anti-hyperuricemic.png
+    - images/cats/Dermatology-Medicine.jpg
+    - images/cats/Anti-Psychotics.png
+    - images/cats/Anti-Convulsant.jpg
+    - images/cats/Benzodiazepines.jpg
+    - images/cats/Alpha-blockers.png
+
     - images/products/medicine1.jpg
     - images/products/medicine2.jpg
     - images/products/medicine3.jpg
@@ -84,6 +142,12 @@ flutter:
     - assets/medicineimages/Sancho.jpg
     - assets/medicineimages/Sinex.jpg
     - assets/medicineimages/TusQD.png
+
+    - assets/supplementimages/groviva.jpg
+    - assets/supplementimages/maxvida.jpg
+    - assets/supplementimages/pediasure.jpeg
+    - assets/supplementimages/protineX.jpg
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -59,7 +59,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return GridView.builder(
         itemCount: product_list.length,
         gridDelegate:
-        new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
@@ -90,21 +90,24 @@ class Single_cate extends StatelessWidget {
             child: InkWell(
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                   builder: (context) => new AllMedicineList(
-                    //Here We Are Passing The Value Of The Product To Product Details Page
-                    medicine_detail_name: cate_name,
-                    medicine_detail_picture: cate_picture,
-                  ))),
+                      //Here We Are Passing The Value Of The Product To Product Details Page
+                      // medicine_detail_name: cate_name,
+                      // medicine_detail_picture: cate_picture,
+                      ))),
               child: GridTile(
                   footer: Container(
                       color: Colors.white,
                       child: new Row(
                         children: <Widget>[
                           Expanded(
-                            child: new Text(cate_name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
+                            child: new Text(
+                              cate_name,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16.0),
+                            ),
                           ),
                         ],
-                      )
-                  ),
+                      )),
                   child: Image.asset(
                     cate_picture,
                     fit: BoxFit.cover,
